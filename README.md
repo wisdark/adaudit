@@ -1,5 +1,5 @@
 # adaudit
-PowerShell Script to perform a quick AD audit
+This PowerShell script is designed to conduct a comprehensive audit of Microsoft Active Directory, focusing on identifying common security vulnerabilities and weaknesses. Its execution facilitates the pinpointing of critical areas that require reinforcement, thereby fortifying your infrastructure against prevalent tactics used in lateral movement or privilege escalation attacks targeting Active Directory.
 ```
 _____ ____     _____       _ _ _
 |  _  |    \   |  _  |_ _ _| |_| |_
@@ -63,6 +63,11 @@ Run directly on a DC using a DA. If you don't trust the code I suggest reading i
   * Get-DNSZoneInsecure
 * Check for newly created users and groups
   * Get-RecentChanges
+* Check for ADCS vulnerabiltiies, ESC1,2,3,4 and 8. 
+* Check for high value kerberoastable accounts 
+* Check for ASREPRoastable accounts
+* Check for dangerous ACL permissions on Users, Groups and Computers. 
+* Check LDAP and LDAPs settings (Signing, null sessions etc )
 
 ## Runtime Args
 The following switches can be used in combination
@@ -80,4 +85,11 @@ The following switches can be used in combination
 * -authpolsilos checks for existence of authentication policies and silos
 * -insecurednszone checks for insecure DNS zones
 * -recentchanges checks for newly created users and groups (last 30 days)
+* -adcs checks for ADCS vulnerabiltiies, ESC1,2,3,4 and 8.
+* -acl checks for dangerous ACL permissions on Users, Groups and Computers. 
+* -spn checks for high value kerberoastable accounts 
+* -asrep checks for ASREPRoastable accounts
+* -ldapsecurity checks for multiple LDAP issues
+* -exclude allows you to exclude specific checks when using adaudit.ps1 -all -exclude ouperms,ntds,adcs"
+* -select allows you to exclude specific checks when using adaudit.ps1 -all "gpo,ntds,acl"
 * -all runs all checks, e.g. AdAudit.ps1 -all
